@@ -1,0 +1,34 @@
+# Git
+.git/
+.github/
+.gitmodules
+
+# Dependências (instaladas pelo entrypoint)
+node_modules/
+lib/ui-library/node_modules/
+lib/pkp/lib/vendor/
+plugins/generic/citationStyleLanguage/vendor/
+plugins/paymethod/paypal/vendor/
+
+# Arquivos do OJS gerados em runtime
+files/
+cache/t_cache/
+cache/t_compile/
+cache/opcache/
+public/
+
+# Assets compilados (gerados pelo Vite no entrypoint)
+js/build.js
+js/build_frontend.js
+styles/build.css
+
+# Ambiente e config local
+.env
+config.inc.php
+
+# Logs
+*.log
+
+# Docker (Dockerfile e compose não precisam estar no build context)
+docker-compose*.yml
+Dockerfile

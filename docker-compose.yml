@@ -1,0 +1,34 @@
+services:
+  app:
+    build:
+      context: .
+    env_file:
+      - .env
+    ports:
+      - "8080:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./:/var/www/html
+      - ./files:/var/www/files
+      - node_modules:/var/www/html/node_modules
+      - ui_lib_node_modules:/var/www/html/lib/ui-library/node_modules
+
+  db:
+    image: mariadb:10.11
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  db-data:
+  node_modules:
+  ui_lib_node_modules:
