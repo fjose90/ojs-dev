@@ -60,6 +60,9 @@ export default defineConfig(({mode}) => {
 			}),
 		],
 		publicDir: false,
+		css: {
+			preprocessorMaxWorkers: 0,
+		},
 		resolve: {
 			alias: {
 				'@': path.resolve(__dirname, 'lib/ui-library/src'),
