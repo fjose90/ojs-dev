@@ -31,5 +31,5 @@ chmod 666 /var/www/html/config.inc.php
 chown -R www-data:www-data /var/www/files
 chmod -R 775 /var/www/files
 
-# 5. Iniciar Apache
-exec apache2-foreground
+# 5. Iniciar PHP-FPM
+exec php-fpm

@@ -4,8 +4,6 @@ services:
       context: .
     env_file:
       - .env
-    ports:
-      - "8080:80"
     depends_on:
       db:
         condition: service_healthy
@@ -14,6 +12,18 @@ services:
       - ./files:/var/www/files
       - node_modules:/var/www/html/node_modules
       - ui_lib_node_modules:/var/www/html/lib/ui-library/node_modules
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
+    env_file:
+      - .env
+    volumes:
+      - ./:/var/www/html:ro
+      - ./docker/nginx.conf.template:/etc/nginx/templates/default.conf.template:ro
 
   db:
     image: mariadb:10.11

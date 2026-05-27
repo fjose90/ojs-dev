@@ -1,4 +1,4 @@
-FROM php:8.5-apache
+FROM php:8.5-fpm
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY --from=node:24-slim /usr/local/bin/node /usr/local/bin/node
@@ -23,7 +23,6 @@ RUN apt-get update \
         mysqli \
         pdo_mysql \
         zip \
-    && a2enmod rewrite \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/html
